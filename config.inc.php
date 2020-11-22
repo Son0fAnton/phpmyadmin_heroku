@@ -10,11 +10,32 @@
  * @package PhpMyAdmin
  */
 
+ // @TODO Tech debt improvements...
+if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+  $remoteIp = $_SERVER['HTTP_CLIENT_IP'];
+} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+  $remoteIp = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+  $remoteIp = $_SERVER['REMOTE_ADDR'];
+}
+
+if (!empty($_ENV['WHITELIST_IP']) && $_ENV['WHITELIST_IP'] != $remoteIp) {
+  header("HTTP/1.1 404 Not Found");
+  header("X-App-Addr: {$remoteIp}");
+  include("app_error.php");
+  exit;
+}
+
 /**
  * This is needed for cookie based authentication to encrypt password in
  * cookie. Needs to be 32 chars long.
  */
 $cfg['blowfish_secret'] = $_ENV['PHPMYADMIN_BLOWFISH_SECRET']; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
+
+/**
+ * If enable this, allows you to log in to arbitrary servers using cookie authentication.
+*/
+$cfg['AllowArbitraryServer'] = (!empty($_ENV['ALLOWARBITRARYSERVER']) && $_ENV['ALLOWARBITRARYSERVER'] == 'true');
 
 /**
  * Servers configuration
@@ -31,6 +52,9 @@ $cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['Servers'][$i]['host'] = $_ENV['MYSQL_HOST'];
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
+$cfg['Servers'][$i]['AllowRoot'] = false;
+
+$cfg['Servers'][$i]['DisableIS'] = true;
 
 /**
  * phpMyAdmin configuration storage settings.

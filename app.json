@@ -12,6 +12,7 @@
     { "url": "heroku/php" },
     { "url": "velizarn/heroku-buildpack-nano" }
   ],
+  "stack": "heroku-20",
   "formation": {
     "web": {
       "quantity": 1,
@@ -26,10 +27,14 @@
       "required": true
     },
     "MYSQL_HOST": {
-      "description": "MySQL host",
+      "description": "The hostname or IP address of your MySQL-server, optional",
+      "value": "",
+      "required": false
+    },
+    "WHITELIST_IP": {
+      "description": "Allowed IP address, optional",
       "value": "",
       "required": false
     }
   }
-  
 }
