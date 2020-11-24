@@ -10,7 +10,7 @@
   "addons": [],
   "buildpacks": [
     { "url": "heroku/php" },
-    { "url": "velizarn/heroku-buildpack-nano" }
+    { "url": "https://github.com/velizarn/heroku-buildpack-apt" }
   ],
   "stack": "heroku-20",
   "formation": {
