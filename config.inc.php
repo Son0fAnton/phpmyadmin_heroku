@@ -47,22 +47,21 @@ $i = 0;
  */
 $i++;
 /* Authentication type */
-// $cfg['Servers'][$i]['auth_type'] = 'cookie';
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
 /* Server parameters */
-// $cfg['Servers'][$i]['host'] = $_ENV['MYSQL_HOST'];
-// $cfg['Servers'][$i]['compress'] = false;
-// $cfg['Servers'][$i]['AllowNoPassword'] = false;
-// $cfg['Servers'][$i]['AllowRoot'] = false;
-
-// $cfg['Servers'][$i]['DisableIS'] = true;
-
-$cfg['Servers'][$i]['auth_type'] = 'config';
-$cfg['Servers'][$i]['user'] = 'root';
-$cfg['Servers'][$i]['password'] = '';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = 'localhost:8066';
+$cfg['Servers'][$i]['host'] = $_ENV['MYSQL_HOST'];
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = true;
+$cfg['Servers'][$i]['AllowRoot'] = false;
+
+$cfg['Servers'][$i]['DisableIS'] = true;
+
+// $cfg['Servers'][$i]['auth_type'] = 'config';
+// $cfg['Servers'][$i]['user'] = 'root';
+// $cfg['Servers'][$i]['password'] = '';
+// $cfg['Servers'][$i]['host'] = $_ENV['MYSQL_HOST'];
+// $cfg['Servers'][$i]['compress'] = false;
+// $cfg['Servers'][$i]['AllowNoPassword'] = true;
 
 /**
  * phpMyAdmin configuration storage settings.
