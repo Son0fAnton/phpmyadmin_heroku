@@ -56,7 +56,7 @@ $i++;
 
 // $cfg['Servers'][$i]['DisableIS'] = true;
 
-$cfg['Servers'][$i]['auth_type'] = 'http';
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['Servers'][$i]['host'] = $_ENV['MYSQL_HOST'];
 $cfg['Servers'][$i]['user'] = 'root';
 $cfg['Servers'][$i]['password'] = '';
